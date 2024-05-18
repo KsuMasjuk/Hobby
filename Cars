@@ -1,0 +1,16 @@
+import requests
+
+# Get the world population from World Bank API
+world_population_url = 'https://api.worldbank.org/v2/population/LB?date=2020&format=json'
+response = requests.get(world_population_url)
+world_population = response.json()[1][0]['value']
+
+# Get the global vehicle ownership rate from Statista API
+vehicle_ownership_url = 'https://api.statista.com/chartData/211120?language=en&accessToken=<your_access_token>'
+response = requests.get(vehicle_ownership_url)
+vehicle_ownership_rate = response.json()[0]['value']
+
+# Calculate the estimated number of cars on Earth
+estimated_cars = int(world_population * vehicle_ownership_rate)
+
+print(f"Estimated number of cars on Earth: {estimated_cars}")
